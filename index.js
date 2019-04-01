@@ -1,9 +1,5 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-
-function msw(text) {
-return message.content.startsWith(text);
-}
  
 client.on("ready", () => {
     console.log("ready!");
@@ -16,6 +12,10 @@ client.on('guildMemberAdd', member => {
 });
 
 client.on('message', (message) => {
+    function msw(text) {
+        return message.content.startsWith(text);
+    }
+ 
     if (msw("sangwoo is gay")) {
         message.channel.send({
             files: ['./imnotgay.png']
