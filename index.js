@@ -13,7 +13,7 @@ client.on('guildMemberAdd', member => {
 
 client.on('message', (message) => {
     function msw(text) {
-        msg = message.content.toLowercase();
+        var msg = message.content.toLowercase();
         return msg.startsWith(text);
     }
  
