@@ -13,8 +13,7 @@ client.on('guildMemberAdd', member => {
 
 client.on('message', (message) => {
     function msw(text) {
-        var msg = message.content.toLowercase();
-        return msg.startsWith(text);
+        return message.content.toLowercase().startsWith(text);
     }
  
     if (msw("sangwoo is gay")) {
