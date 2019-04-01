@@ -13,18 +13,21 @@ client.on('guildMemberAdd', member => {
 
 client.on('message', (message) => {
     function msw(text) {
-        return message.content.toLowercase().startsWith(text);
+        return message.content.startsWith(text);
     }
  
     if (msw("sangwoo is gay")) {
         message.channel.send({
             files: ['./imnotgay.png']
-        });
+        }).then(console.log).catch(console.error);;
     }
     if (msw("sangwoo isn't gay") || msw("sangwoo isnt gay")) {
         message.channel.send({
             files: ['./imgay.png']
-        });
+        }).then(console.log).catch(console.error);;
+    }
+    if (msw("is sangwoo gay")) {
+        message.react('🤔').then(console.log).catch(console.error);
     }
 });
 
