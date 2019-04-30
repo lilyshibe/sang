@@ -30,7 +30,7 @@ client.on('message', (message) => {
         message.react('🤔').then(console.log).catch(console.error);
     }
  
-    if (msw("sang-say") {
+    if (msw("sang-say")) {
         if (message.author.id !== "125727575422009344") return;
         const args = message.content.split(" ").slice(1);
         message.channel.send(args.join(" "));
