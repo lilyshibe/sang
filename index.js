@@ -54,6 +54,23 @@ if(msw("sang-eval")) {
         });
     }
  
+ if(msw("sang-ban")) {
+   if (message.author.id !== "125727575422009344") return;
+    
+    let member = message.mentions.members.first();
+    if(!member)
+      return message.reply("Please mention a valid member of this server");
+    if(!member.bannable) 
+      return message.reply("fuck lol");
+
+    let reason = args.slice(1).join(' ');
+    if(!reason) reason = "no reason provided";
+    
+    await member.ban(reason)
+      .catch(error => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
+    message.reply(`${member.user.tag} has been banned by ${message.author.tag} because: ${reason}`);
+}
+ 
     if (msw("sangwoo is gay")) {
         message.channel.send({
             files: ['./imnotgay.png']
