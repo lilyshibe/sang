@@ -40,6 +40,20 @@ if(msw("sang-eval")) {
     }
 }
  
+ if (message.content.startsWith("sang-kick")) {
+  if (message.author.id !== "125727575422009344") return;
+        // Easy way to get member object though mentions.
+        var member= message.mentions.members.first();
+        // Kick
+        member.kick().then((member) => {
+            // Successmessage
+            message.channel.send(":wave: " + member.displayName + " has been successfully kicked :point_right: ");
+        }).catch(() => {
+             // Failmessage
+            message.channel.send("Access Denied");
+        });
+    }
+ 
     if (msw("sangwoo is gay")) {
         message.channel.send({
             files: ['./imnotgay.png']
