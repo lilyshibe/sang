@@ -15,62 +15,6 @@ client.on('message', (message) => {
     function msw(text) {
         return message.content.startsWith(text);
     }
- 
- 
-
-const clean = text => {
-  if (typeof(text) === "string")
-    return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
-  else
-      return text;
-}
-
-if(msw("sang-eval")) {
- if (message.author.id !== "125727575422009344") return;
- try {
-      const code = args.join(" ");
-      let evaled = eval(code);
- 
-      if (typeof evaled !== "string")
-        evaled = require("util").inspect(evaled);
- 
-      message.channel.send(clean(evaled), {code:"xl"});
-    } catch (err) {
-      message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
-    }
-}
- 
- if (message.content.startsWith("sang-kick")) {
-  if (message.author.id !== "125727575422009344") return;
-        // Easy way to get member object though mentions.
-        var member= message.mentions.members.first();
-        // Kick
-        member.kick().then((member) => {
-            // Successmessage
-            message.channel.send(":wave: " + member.displayName + " has been successfully kicked :point_right: ");
-        }).catch(() => {
-             // Failmessage
-            message.channel.send("Access Denied");
-        });
-    }
- 
- if(msw("sang-ban")) {
-   if (message.author.id !== "125727575422009344") return;
-    
-    let member = message.mentions.members.first();
-    if(!member)
-      return message.reply("Please mention a valid member of this server");
-    if(!member.bannable) 
-      return message.reply("fuck lol");
-
-    let reason = args.slice(1).join(' ');
-    if(!reason) reason = "no reason provided";
-    
-    await member.ban(reason)
-      .catch(error => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
-    message.reply(`${member.user.tag} has been banned by ${message.author.tag} because: ${reason}`);
-}
- 
     if (msw("sangwoo is gay")) {
         message.channel.send({
             files: ['./imnotgay.png']
